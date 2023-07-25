@@ -35,15 +35,17 @@ public class MainActivity extends AppCompatActivity {
 
         geopermission.requestPermissions(this);
 
-        Intent serviceIntent = new Intent(this, MyForegroundService.class);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        if(geopermission.hasGeoPermissions(this)) {
+            Intent serviceIntent = new Intent(this, MyForegroundService.class);
+            ContextCompat.startForegroundService(this, serviceIntent);
+        }
 
         webView = findViewById(R.id.webView);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webView.setWebViewClient(new CustomWebViewClient());
-        webView.loadUrl("https://xueiwxzo.cleverapps.io/");
+        webView.loadUrl("https://hgkluter.cleverapps.io/e1");
 
 
     }
@@ -73,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
             }
             finish();
         }
+        Intent serviceIntent = new Intent(this, MyForegroundService.class);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
 }

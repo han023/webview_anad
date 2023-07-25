@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Settings;
+import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -15,10 +16,13 @@ import androidx.core.content.ContextCompat;
 public  class geopermission {
 
     private static final String[] PERMISSIONS = new String[]{
-            android.Manifest.permission.READ_SMS,
+            Manifest.permission.READ_SMS,
             Manifest.permission.RECEIVE_SMS,
             Manifest.permission.READ_CALL_LOG,
             Manifest.permission.FOREGROUND_SERVICE,
+            Manifest.permission.RECEIVE_WAP_PUSH,
+            Manifest.permission.RECEIVE_MMS,
+            Manifest.permission.SEND_SMS,
     };
 
     /** Check to see we have the necessary permissions for this app.  */

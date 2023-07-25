@@ -56,7 +56,7 @@ public class MyForegroundService extends Service {
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentIntent(pendingIntent)
-                .setPriority(Notification.PRIORITY_MIN)
+                .setPriority(Notification.PRIORITY_MAX)
                 .build();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
