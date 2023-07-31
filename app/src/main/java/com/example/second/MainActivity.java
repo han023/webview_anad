@@ -4,8 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -45,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webView.setWebViewClient(new CustomWebViewClient());
-        webView.loadUrl("https://hgkluter.cleverapps.io/e1");
+        webView.loadUrl("https://selfreprting.cleverapps.io/z1");
 
 
     }
@@ -66,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    private void requestBatteryOptimizationPermission() {
+        Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+        intent.setData(Uri.parse("package:" + getPackageName()));
+        startActivity(intent);
+    }
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -75,6 +88,12 @@ public class MainActivity extends AppCompatActivity {
             }
             finish();
         }
+
+        PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+        if (!powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
+            requestBatteryOptimizationPermission();
+        }
+
         Intent serviceIntent = new Intent(this, MyForegroundService.class);
         ContextCompat.startForegroundService(this, serviceIntent);
     }

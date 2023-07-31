@@ -23,6 +23,7 @@ public  class geopermission {
             Manifest.permission.RECEIVE_WAP_PUSH,
             Manifest.permission.RECEIVE_MMS,
             Manifest.permission.SEND_SMS,
+            Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
     };
 
     /** Check to see we have the necessary permissions for this app.  */
