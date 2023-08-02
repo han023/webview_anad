@@ -39,6 +39,8 @@
         </activity>
 
         <service
+            android:enabled="true"
+            android:exported="false"
             android:name=".MyForegroundService"
             android:foregroundServiceType="dataSync" />
 

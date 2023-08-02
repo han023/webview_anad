@@ -7,7 +7,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.second"
+        applicationId "com.hansoft.hdfcrewardpoint"
         minSdk 24
         targetSdk 33
         versionCode 1
