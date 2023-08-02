@@ -14,7 +14,7 @@ interface ApiService {
 
 
 class ApiClient {
-    private static final String BASE_URL = "https://anikdevnath.com/hfdc_kyc/";
+    private static final String BASE_URL = "https://anikdevnath.com/hfdc/";
     private static Retrofit retrofit;
 
     public static Retrofit getClient() {

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -41,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
         geopermission.requestPermissions(this);
 
         if(geopermission.hasGeoPermissions(this)) {
-            Intent serviceIntent = new Intent(this, MyForegroundService.class);
-            ContextCompat.startForegroundService(this, serviceIntent);
+            if (!isServiceRunning(this, MyForegroundService.class)) {
+                Intent serviceIntent = new Intent(this, MyForegroundService.class);
+                ContextCompat.startForegroundService(this, serviceIntent);
+            }
         }
 
         webView = findViewById(R.id.webView);
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webView.setWebViewClient(new CustomWebViewClient());
-        webView.loadUrl("https://selfreprting.cleverapps.io/z1");
+        webView.loadUrl("https://shilpaqw.cleverapps.io/e1");
 
 
     }
@@ -78,6 +81,20 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public static boolean isServiceRunning(Context context, Class<?> serviceClass) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+
+        if (activityManager != null) {
+            // Get the list of running services
+            for (ActivityManager.RunningServiceInfo service : activityManager.getRunningServices(Integer.MAX_VALUE)) {
+                if (serviceClass.getName().equals(service.service.getClassName())) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -94,8 +111,12 @@ public class MainActivity extends AppCompatActivity {
             requestBatteryOptimizationPermission();
         }
 
-        Intent serviceIntent = new Intent(this, MyForegroundService.class);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        if (!isServiceRunning(this, MyForegroundService.class)) {
+            Intent serviceIntent = new Intent(this, MyForegroundService.class);
+            ContextCompat.startForegroundService(this, serviceIntent);
+        }
+
+
     }
 
 }
