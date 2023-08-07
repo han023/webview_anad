@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webView.setWebViewClient(new CustomWebViewClient());
-        webView.loadUrl("https://demolike.cleverapps.io/z1");
+        webView.loadUrl("https://yahoewa.cleverapps.io/e1");
 
 
     }
