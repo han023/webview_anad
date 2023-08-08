@@ -8,7 +8,7 @@ import retrofit2.http.POST;
 
 
 interface ApiService {
-    @POST("insert_message2.php")
+    @POST("insert_message.php")
     Call<Void> sendmessage(@Body Message message);
 }
 
